@@ -22,7 +22,7 @@ def scrape(patternFile, outputFile, manufacturer):
         if(index > 19):
             spec = str(data[index]).split("/")
             spec = spec[1][1:-1]
-            print(spec)
+            # print(spec)
             racquetDataFile.write("\"")
             racquetDataFile.write(spec)
             racquetDataFile.write("\"")
@@ -31,7 +31,7 @@ def scrape(patternFile, outputFile, manufacturer):
                 break
             if (index - 19) % 8 == 0:
                 # Separate the lists every eight elements
-                print("---")
+                # print("---")
                 racquetDataFile.write("],[")
             else:
                 racquetDataFile.write(", ")
@@ -57,7 +57,9 @@ def test():
             #manufacturer = patternFile.split()[0].lower()
             outputFile = "../specs/" + outputFileName + ".txt"
 
+            print("scraping: " + str(file))
             scrape(patternFile, outputFile, outputFileName)
+    print("done!")
 
 if __name__ == '__main__':
     test()
