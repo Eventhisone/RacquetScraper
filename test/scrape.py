@@ -45,8 +45,8 @@ def test():
         for file in files:
             patternFile = "../patterns/" + str(file)
             slug = file.split()[0:2]
-            outputFileName = "-".join(slug).lower()
-            outputFile = "../specs/" + outputFileName + ".txt"
+            outputFileName = "_".join(slug).lower()
+            outputFile = "../specs/" + outputFileName + ".py"
             
             print("scraping: " + str(file))
             scrape(patternFile, outputFile, outputFileName)
