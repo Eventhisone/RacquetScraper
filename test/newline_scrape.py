@@ -11,26 +11,27 @@ def scrape(patternFile, outputFile, manufacturer):
 
     data = soup.find_all('td')
     
-    racquetDataFile.write(str(manufacturer) + " = [[")
+    #racquetDataFile.write(str(manufacturer) + " = [[")
     
     for index in range(len(data)):
         # The first 2 elemenst of the data array contain information we don't want
         if(index > 19):
             spec = str(data[index]).split("/")
             spec = spec[1][1:-1]
-            racquetDataFile.write("\"")
+            #racquetDataFile.write("\"")
             racquetDataFile.write(spec)
-            racquetDataFile.write("\"")
+            #racquetDataFile.write("\"")
             if index > len(data) -2:
                 # The last spec is a blank line and we don't want it
                 break
             if (index - 19) % 8 == 0:
                 # Separate the lists every eight elements
-                racquetDataFile.write("],[")
+                #racquetDataFile.write("],[")
+                racquetDataFile.write("\n")
             else:
-                racquetDataFile.write(", ")
+                racquetDataFile.write("#")
 
-    racquetDataFile.write("]]")
+    #racquetDataFile.write("]]")
 
     racquetDataFile.close()
 
@@ -45,7 +46,7 @@ def test():
             patternFile = patterndir + str(file)
             slug = file.split()[0:2]
             outputFileName = "_".join(slug).lower()
-            outputFile = outputdir + outputFileName + ".py"
+            outputFile = outputdir + outputFileName + ".txt"
             
             print("scraping: " + str(file))
             scrape(patternFile, outputFile, outputFileName)
